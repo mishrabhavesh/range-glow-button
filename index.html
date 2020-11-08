@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    html {
+        background-color: white;
+    }
+
+    :root {
+      --main-bg-color: rgba(45, 242, 19,.6);
+    }
+
+
+    body {
+        border: 0;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        background-color: white;
+    }
+
+    form {
+        width: 95vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    input[type="range"] {
+        z-index: 5000;
+        box-shadow: .4rem .2rem .7rem rgba(75, 77, 72, .6);
+        cursor: pointer;
+        transform: rotate(-90deg);
+        height: 1.5em;
+        width: 6em;
+        appearance: none;
+        font-size: 3rem;
+        background-color: rgba(white, .6);
+        border-radius: 6px;
+    }
+
+    input[type="range"]:focus {
+        outline: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+        border: 0;
+        background: url('./power.svg') ;
+        background-color: var(--main-bg-color);
+        transform: rotate(-90deg);
+        border-radius: 50%;
+        box-shadow: -0.25em 0 0.5em hsl(228,9.8%,63%), 0.25em 0 0.5em hsl(228,9.8%,100%);
+        width: 1.5em;
+        height: 1.5em;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+    }
+
+    </style>
+    <script>
+        const showVal = (e) => {
+            console.log(e/100);
+            document.getElementById('body').style.filter = `brightness(${e/100})`;
+            if(e >= 80) {
+                document.documentElement.setAttribute("style", `--main-bg-color: rgba(45, 242, 19, ${e/100}`);
+            }
+
+            else if(e<80 && e>=55) {
+                document.documentElement.setAttribute("style", `--main-bg-color: rgba(224, 252, 10, ${e/100+.1}`);
+            }
+
+            else if(e<55) {
+                document.documentElement.setAttribute("style", `--main-bg-color: rgba(242, 74, 2, ${e/100+.1}`);
+            }
+        }
+    </script>
+</head>
+<body id="body">
+    <h2>Hello!! made with love by Bhavesh</h2>
+    <form id='form'>
+        <input type="range" oninput="showVal(this.value)" id="brightness" name="brightness" min="35" max="100" value="100">
+    </form>
+</body>
+</html>
